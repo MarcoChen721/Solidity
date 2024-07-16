@@ -1,0 +1,262 @@
+{
+	"id": "1424b7b1c9aedf639ecb3cc22dcb8021",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.25",
+	"solcLongVersion": "0.8.25+commit.b61c2a91",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\n/*\r\n抽象合约:\r\n如果一个智能合约里至少有一个未实现的函数，即某个函数缺少主体{}中的内容，则必须将该合约标为abstract，不然\r\n编译会报错；另外，未实现的函数需要加virtual，以便子合约重写。拿我们之前的插入排序合约为例，如果我们还没\r\n想好具体怎么实现插入排序函数，那么可以把合约标为abstract，之后让别人补写上。\r\n*/\r\n\r\nabstract contract InserttionSort {\r\n    function insertionSort(uint[] memory arr) public virtual returns(uint[] memory);\r\n}\r\n\r\n/*\r\n接口:\r\n接口类似于抽象合约，但它不实现任何功能。接口的规则：\r\n\r\n1.不能包含状态变量\r\n2.不能包含构造函数\r\n3.不能继承除接口外的其他合约\r\n4.所有函数都必须是external且不能有函数体\r\n5.继承接口的非抽象合约必须实现接口定义的所有功能\r\n\r\n虽然接口不实现任何功能，但它非常重要。接口是智能合约的骨架，定义了合约的功能以及如何触发它们：\r\n如果智能合约实现了某种接口（比如ERC20或ERC721），其他Dapps和智能合约就知道如何与它交互。\r\n因为接口提供了两个重要的信息：\r\n\r\n① 合约里每个函数的bytes4选择器，以及函数签名函数名(每个参数类型）。\r\n② 接口id（更多信息见EIP165）\r\n\r\n另外，接口与合约ABI（Application Binary Interface）等价，可以相互转换：编译接口可以得到合约的ABI，\r\n利用abi-to-sol工具，也可以将ABI json文件转换为接口sol文件。\r\n\r\n我们以ERC721接口合约IERC721为例，它定义了3个event和9个function，所有ERC721标准的NFT都实现了这些函数。\r\n我们可以看到，接口和常规合约的区别在于每个函数都以;代替函数体{ }结尾。\r\n\r\n*/\r\n\r\n// interface IERC721 is IERC165 {\r\n//     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);\r\n//     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);\r\n//     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);\r\n    \r\n//     function balanceOf(address owner) external view returns (uint256 balance);\r\n\r\n//     function ownerOf(uint256 tokenId) external view returns (address owner);\r\n\r\n//     function safeTransferFrom(address from, address to, uint256 tokenId) external;\r\n\r\n//     function transferFrom(address from, address to, uint256 tokenId) external;\r\n\r\n//     function approve(address to, uint256 tokenId) external;\r\n\r\n//     function getApproved(uint256 tokenId) external view returns (address operator);\r\n\r\n//     function setApprovalForAll(address operator, bool _approved) external;\r\n\r\n//     function isApprovedForAll(address owner, address operator) external view returns (bool);\r\n\r\n//     function safeTransferFrom( address from, address to, uint256 tokenId, bytes calldata data) external;\r\n// }\r\n\r\n\r\n\r\n\r\n/*\r\n\r\n1-IERC721事件:IERC721包含3个事件，其中Transfer和Approval事件在ERC20中也有。\r\n\r\n①Transfer事件：\r\n            在转账时被释放，记录代币的发出地址from，接收地址to和tokenId。\r\n②Approval事件：\r\n            在授权时被释放，记录授权地址owner，被授权地址approved和tokenId。\r\n③ApprovalForAll事件：\r\n            在批量授权时被释放，记录批量授权的发出地址owner，被授权地址operator和授权与否的approved。\r\n\r\n2-IERC721函数:\r\n        balanceOf：返回某地址的NFT持有量balance。\r\n        ownerOf：返回某tokenId的主人owner。\r\n        transferFrom：普通转账，参数为转出地址from，接收地址to和tokenId。\r\n        safeTransferFrom：安全转账（如果接收方是合约地址，会要求实现ERC721Receiver接口）。\r\n        参数为转出地址from，接收地址to和tokenId。\r\n        approve：授权另一个地址使用你的NFT。参数为被授权地址approve和tokenId。\r\n        getApproved：查询tokenId被批准给了哪个地址。\r\n        setApprovalForAll：将自己持有的该系列NFT批量授权给某个地址operator。\r\n        isApprovedForAll：查询某地址的NFT是否批量授权给了另一个operator地址。\r\n        safeTransferFrom：安全转账的重载函数，参数里面包含了data。\r\n\r\n\r\n3-什么时候使用接口？\r\n如果我们知道一个合约实现了IERC721接口，我们不需要知道它具体代码实现，就可以与它交互。\r\n\r\n无聊猿BAYC属于ERC721代币，实现了IERC721接口的功能。我们不需要知道它的源代码，只需知道它的合约地址，\r\n用IERC721接口就可以与它交互，比如用balanceOf()来查询某个地址的BAYC余额，用safeTransferFrom()来转账BAYC。\r\n\r\n\r\n\r\n*/\r\n\r\n// contract InterBAYC{\r\n    \r\n//     // 利用BAYC地址创建接口合约变量（ETH主网）\r\n//     IERC721 bayc = IERC721(0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D);\r\n\r\n//     // 通过接口调用BAYC的balanceOf()查询持仓量\r\n//     function balanceOfBAYC(address owner) external view returns(uint256 balance){\r\n//         return bayc.balanceOf(owner); \r\n//     }\r\n\r\n//     // 通过接口调用BAYC的safeTransferFrom()安全转账\r\n//     function safeTransferFromBAYC(address from, address to, uint256 tokenId) external{\r\n//         return bayc.safeTransferFrom(from, to, tokenId);\r\n//     }\r\n    \r\n// }\r\n\r\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol": {
+				"InserttionSort": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "uint256[]",
+									"name": "arr",
+									"type": "uint256[]"
+								}
+							],
+							"name": "insertionSort",
+							"outputs": [
+								{
+									"internalType": "uint256[]",
+									"name": "",
+									"type": "uint256[]"
+								}
+							],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"insertionSort(uint256[])": "6297206f"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.25+commit.b61c2a91\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"arr\",\"type\":\"uint256[]\"}],\"name\":\"insertionSort\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(\\u62bd\\u8c61\\u5408\\u7ea6\\u548c\\u63a5\\u53e3).sol\":\"InserttionSort\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(\\u62bd\\u8c61\\u5408\\u7ea6\\u548c\\u63a5\\u53e3).sol\":{\"keccak256\":\"0x90657f53ec7593620c5912a5b897c7a0909da1f9e138ffb05aed985fe76e6f8a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f50bfb27a1433d901c6b951620fcf10162d7bb6b26d127410a13379e0288e3d0\",\"dweb:/ipfs/QmWoZLXAyywhjf4om8P8xoXLfNahR2MXbGwqR2bvsrar23\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol": {
+				"ast": {
+					"absolutePath": "SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol",
+					"exportedSymbols": {
+						"InserttionSort": [
+							11
+						]
+					},
+					"id": 12,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "35:23:0"
+						},
+						{
+							"abstract": true,
+							"baseContracts": [],
+							"canonicalName": "InserttionSort",
+							"contractDependencies": [],
+							"contractKind": "contract",
+							"fullyImplemented": false,
+							"id": 11,
+							"linearizedBaseContracts": [
+								11
+							],
+							"name": "InserttionSort",
+							"nameLocation": "523:14:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"functionSelector": "6297206f",
+									"id": 10,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "insertionSort",
+									"nameLocation": "554:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 5,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "arr",
+												"nameLocation": "582:3:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "568:17:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+													"typeString": "uint256[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 2,
+														"name": "uint",
+														"nodeType": "ElementaryTypeName",
+														"src": "568:4:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"id": 3,
+													"nodeType": "ArrayTypeName",
+													"src": "568:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+														"typeString": "uint256[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "567:19:0"
+									},
+									"returnParameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 8,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "610:13:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+													"typeString": "uint256[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 6,
+														"name": "uint",
+														"nodeType": "ElementaryTypeName",
+														"src": "610:4:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"id": 7,
+													"nodeType": "ArrayTypeName",
+													"src": "610:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+														"typeString": "uint256[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "609:15:0"
+									},
+									"scope": 11,
+									"src": "545:80:0",
+									"stateMutability": "nonpayable",
+									"virtual": true,
+									"visibility": "public"
+								}
+							],
+							"scope": 12,
+							"src": "505:123:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "35:5425:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

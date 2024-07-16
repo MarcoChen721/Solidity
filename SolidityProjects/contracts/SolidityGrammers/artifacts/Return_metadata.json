@@ -1,0 +1,122 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "readReturn",
+				"outputs": [],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnMultiple",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnNamed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "num",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_bool",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "_array",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnNamed2",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "num",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_bool",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "_array",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SolidityProjects/contracts/SolidityGrammers/4-Return(函数输出).sol": "Return"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SolidityProjects/contracts/SolidityGrammers/4-Return(函数输出).sol": {
+			"keccak256": "0x9cedef9b8c3d0805f58d97bf1f81c3ec19ad4b8060a571ecde16158a20c164a6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://17cf586cc64c18aa3abe73327462bf3b37e74a1a879d06e29e0a87a77ca44538",
+				"dweb:/ipfs/QmZQ7G9fSMyCZnwPeKCmbLFt5s4h92DqLwQahxcvUgVoT4"
+			]
+		}
+	},
+	"version": 1
+}

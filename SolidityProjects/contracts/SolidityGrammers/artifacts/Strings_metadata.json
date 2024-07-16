@@ -1,0 +1,118 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "toHexString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "toHexString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "toString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"toHexString(uint256)": {
+					"details": "Converts a `uint256` to its ASCII `string` hexadecimal representation."
+				},
+				"toHexString(uint256,uint256)": {
+					"details": "Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length."
+				},
+				"toString(uint256)": {
+					"details": "Converts a `uint256` to its ASCII `string` decimal representation."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SolidityProjects/contracts/SolidityGrammers/21-LibraryContract(库合约).sol": "Strings"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SolidityProjects/contracts/SolidityGrammers/21-LibraryContract(库合约).sol": {
+			"keccak256": "0xf02579c6bb96be52ff5024f2320f564d9c8b484c23e1383d0789dee3862db8eb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9fbf6ccfde7d7bba6387da1bee347390b1a8990e3ec2d0870549716f275ebd09",
+				"dweb:/ipfs/QmYjHMf6BfHnFbiw2fcxiBAtzvoLX547v2BTERQA8LdtEP"
+			]
+		}
+	},
+	"version": 1
+}

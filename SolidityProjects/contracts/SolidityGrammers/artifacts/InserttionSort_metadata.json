@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "arr",
+						"type": "uint256[]"
+					}
+				],
+				"name": "insertionSort",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol": "InserttionSort"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SolidityProjects/contracts/SolidityGrammers/18-Abstract contracts and interfaces(抽象合约和接口).sol": {
+			"keccak256": "0x90657f53ec7593620c5912a5b897c7a0909da1f9e138ffb05aed985fe76e6f8a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f50bfb27a1433d901c6b951620fcf10162d7bb6b26d127410a13379e0288e3d0",
+				"dweb:/ipfs/QmWoZLXAyywhjf4om8P8xoXLfNahR2MXbGwqR2bvsrar23"
+			]
+		}
+	},
+	"version": 1
+}

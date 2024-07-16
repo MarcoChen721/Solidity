@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "Mystring",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SolidityProjects/contracts/SolidityGrammers/1-HelloWeb3.sol": "HelloWeb3"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SolidityProjects/contracts/SolidityGrammers/1-HelloWeb3.sol": {
+			"keccak256": "0x7cb4d5d9d4fa15f90782533fb470a59c4dacc97b4f5524024c65ddd5034c2b55",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8619fbe8f7922a18a3dcc5e29ae53c30b070b41795b1db8ca0eb9c5dd7599b18",
+				"dweb:/ipfs/QmRozWqKDxCbKK8BaCSqkg5XuFcv1kdufvqKPWMWYstcd6"
+			]
+		}
+	},
+	"version": 1
+}

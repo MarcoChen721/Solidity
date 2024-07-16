@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "a",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SolidityProjects/contracts/SolidityGrammers/17-inherit(继承).sol": "B"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SolidityProjects/contracts/SolidityGrammers/17-inherit(继承).sol": {
+			"keccak256": "0xacf1710c3b3d979b538f36b16de499068d9e14a5efbd984a0ee271b515677c29",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7d84143cb753f8c06aaab583d25aece723cd39767e516edf9bf51c7fafaa3612",
+				"dweb:/ipfs/QmdtQ2pc1X1yWMGs4TQB1SXmoXXoekipL94yDZHESrQmyH"
+			]
+		}
+	},
+	"version": 1
+}
